@@ -1,6 +1,6 @@
-=RageRacer=
-v 0.1.0
+RageRacer
 ===
+v 0.1.0
 ***Note:***
 This version of rage racer was demoed at Spring 2011 HackNY. It's very "hacked" and makes a lot of unnecessary broadcast calls. Future versions will fix this.
 
