@@ -1,4 +1,7 @@
 RageRacer
+
+Authors: David Wang, Daniel Ge, Bezhou Feng, and Adi Dahiya
+
 ===
 v 0.1.0
 ***Note:***
