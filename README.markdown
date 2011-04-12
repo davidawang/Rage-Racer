@@ -1,5 +1,7 @@
 RageRacer
 ===
+By David Wang, Daniel Ge, Bezhou Feng, and Adi Dahiya
+
 v 0.1.0
 ***Note:***
 This version of rage racer was demoed at Spring 2011 HackNY. It's very "hacked" and makes a lot of unnecessary broadcast calls. Future versions will fix this and use modules dnode + connect.
@@ -21,9 +23,3 @@ and server.js on another server, but it can hosted on the same server (given tha
 This will be fixed in future releases.
 
 Many thanks to the guys at [Nodejitsu](http://www.nodejitsu.com) for their help.
-
-Written by  
-David Wang  
-Bezhou Feng  
-Daniel Ge  
-Adi Dahiya
