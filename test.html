@@ -1,0 +1,132 @@
+<html>
+<head>
+	<title>Canvas</title>
+	<script src = "libs/socket.io.js"></script>
+	<script src = "/socket.io/socket.io.js"></script>
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	
+	<meta name = "viewport" content = "width = device-width, user-scalable = 0" />
+	<meta name = "apple-mobile-web-app-capable" content = "yes" />
+	
+	<script type = "text/javascript">
+	
+		var ctx;
+		var socket = new io.Socket('dev.dwang.org', { 'port': 4000} );
+		var time;
+		var seconds;
+		var touchRate;
+		
+		var userInfo = {
+			uName: "",
+			moveSpeed: 0,
+			isJumping: 0
+		};
+		
+		socket.connect();
+		
+		socket.on('connect', function(){
+			//do cool stuff once connected
+			//alert('Connected.');
+		});
+		
+		socket.on('message', function(msg){
+			//do cool stuff to the message
+		});
+		
+		socket.send('Hello world!');
+		
+		socket.on('disconnect', function(){
+			alert('You have been disconnected from the server.');
+		});
+		
+		function init() {
+			var uName = prompt("Please enter your user name", "Troll" + Math.floor(Math.random()*10000));
+			//start the clock
+			touchRate = 0;
+			time = new Date();
+			seconds = time.getTime();
+			
+			userInfo['uName'] = uName;
+			
+			document.getElementById('nameDiv').innerHTML = 'Player name: ' + userInfo['uName'];
+			socket.send(userInfo);
+			var accel = 0;
+			
+			//setup canvas
+			var canvas = document.getElementById('canvas');
+			ctx = canvas.getContext('2d');
+			
+			drawCirc(ctx);
+			
+			//detect touch input
+			canvas.addEventListener("touchend", touchUp, false);
+			
+			//detect accelerometer settings
+			window.addEventListener("devicemotion", function(event) {
+				accel = event.accelerationIncludingGravity;
+				var accelMag = Math.sqrt(Math.pow(accel.x, 2) + Math.pow(accel.y, 2) + Math.pow(accel.z, 2));
+				
+				if (accelMag >= 22) {
+					//document.getElementById('text123').innerHTML = 'shaking by user ' + userInfo['uName'];
+					userInfo['isJumping'] = 1;
+					socket.send(userInfo);
+					
+					setTimeout(function() {
+						userInfo['moveSpeed'] = 0;
+					}, 1000);
+				}
+				else
+				{
+					userInfo['isJumping'] = 0;
+				}
+			}, true);
+			
+		}
+		
+		function drawCirc(ctx) {
+			//ctx.beginPath();
+			//ctx.arc(150, 150, 125, 0, Math.PI * 2, true);
+			//ctx.closePath();
+			//ctx.fill();
+            var img = new Image();
+            img.src = "http://public.dwang.org/rage/1.png";
+            ctx.drawImage(img, 50, 50, 150, 150);
+		}
+		
+		function touchUp() {
+			time = new Date();
+			var temp = time.getTime();
+			var deltaTime = temp - seconds;
+			//document.getElementById('text123').innerHTML = 'touching at rate ' + deltaTime;
+			
+			if (deltaTime >= 500) {
+				seconds = time.getTime();
+				userInfo['moveSpeed'] = touchRate;
+				socket.send(userInfo);
+				
+				//document.getElementById('text124').innerHTML = 'touching at rate ' + touchRate;
+				touchRate = 0;
+			}
+			else {
+				touchRate += 1;
+			}
+		}
+		
+	</script>
+</head>
+<body onload = "init();" style = "background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#bbbbbb));">
+    <center>
+	<div id = "titleDiv" style = "font-family:Helvetica; font-size: 24px; border: 1px grey solid; border-radius: 5px;">
+        <b>Rage Racer</b>
+    </div>
+    <br/>
+    <div id = "nameDiv" style = "font-family:Helvetica;">
+    
+    </div>
+    <canvas id = "canvas" width = "300" height = "300" style = ""></canvas>
+	<pre id = "text123"></pre>
+	<br/>
+	<pre id = "text124"></pre>
+    </center>
+</body>
+</html>
