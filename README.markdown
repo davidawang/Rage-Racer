@@ -1,7 +1,4 @@
 RageRacer
-
-Authors: David Wang, Daniel Ge, Bezhou Feng, and Adi Dahiya
-
 ===
 v 0.1.0
 ***Note:***
@@ -25,6 +22,8 @@ This will be fixed in future releases.
 
 Many thanks to the guys at [Nodejitsu](http://www.nodejitsu.com) for their help.
 
-
-
-
+Written by
+David Wang
+Bezhou Feng
+Daniel Ge
+Adi Dahiya
