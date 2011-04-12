@@ -4,6 +4,8 @@ v 0.1.0
 ***Note:***
 This version of rage racer was demoed at Spring 2011 HackNY. It's very "hacked" and makes a lot of unnecessary broadcast calls. Future versions will fix this and use modules dnode + connect.
 
+To see our demo video at HackNY, jump to minute 1:17:27 of the [archive of the livestream:](http://bit.ly/rageracer)
+
 Getting Started
 ===
 Install node.js, npm, socket.io (eyes for debuggin purposes)
