@@ -10,11 +10,11 @@ Install node.js, npm, socket.io (eyes for debuggin purposes)
 
 Clone the git repo, install dependencies, and start our demo:
   
-  cd rageracer/
-  npm install eyes socket.io
-  node rageracer.js
+  *cd rageracer/
+  *npm install eyes socket.io
+  *node rageracer.js
 
-To view the GUI, open the serverrunner.html. During the demo we hosted serverrunner.html 
+To view the GUI, open the serverrunner.html under the folder "client". During the demo we hosted serverrunner.html 
 and server.js on another server, but it can hosted on the same server (given that node.js is properly configured to serve them as static files).
 This will be fixed in future releases.
 
